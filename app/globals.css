@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+/* ── Design system: strict monochrome minimalism ── */
+:root {
+  --black:   #0a0a0a;
+  --white:   #ffffff;
+  --gray-1:  #f5f5f5;
+  --gray-2:  #e8e8e8;
+  --gray-3:  #c0c0c0;
+  --gray-4:  #888888;
+  --gray-5:  #444444;
+  --font:    'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--font);
+  background: var(--white);
+  color: var(--black);
+  line-height: 1.5;
+}
+
+a { color: inherit; }
+
+/* scrollbar */
+::-webkit-scrollbar       { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--gray-2); }
+
+/* utility */
+.mono { font-family: 'Courier New', Courier, monospace; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes bounce-dot {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%            { transform: translateY(-4px); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

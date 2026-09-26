@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acme Corp — Demo Page</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+    }
+
+    /* ── Fake company nav ── */
+    header {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0 40px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #6366f1;
+    }
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #64748b;
+    }
+    nav a:hover { color: #0f172a; }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 900px;
+      margin: 80px auto 0;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eef2ff;
+      color: #4338ca;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 99px;
+      padding: 4px 12px;
+      margin-bottom: 20px;
+    }
+    .badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #4338ca;
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 0 0 20px;
+    }
+    .subtitle {
+      font-size: 18px;
+      color: #64748b;
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .cta-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: #6366f1;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: #4f46e5; }
+    .btn-secondary {
+      background: white;
+      color: #374151;
+      border: 1.5px solid #e2e8f0;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-secondary:hover { background: #f8fafc; }
+
+    /* ── Feature cards ── */
+    .features {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 24px;
+      transition: box-shadow 0.2s;
+    }
+    .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+    .card-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: #eef2ff;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+      font-size: 20px;
+    }
+    .card h3 { margin: 0 0 6px; font-size: 15px; font-weight: 600; }
+    .card p  { margin: 0; font-size: 13.5px; color: #64748b; line-height: 1.6; }
+
+    /* ── Demo hint ── */
+    .demo-hint {
+      max-width: 500px;
+      margin: 0 auto 80px;
+      padding: 18px 22px;
+      background: #fffbeb;
+      border: 1.5px solid #fde68a;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 14px;
+      color: #92400e;
+    }
+    .demo-hint strong { display: block; margin-bottom: 4px; }
+
+    footer {
+      text-align: center;
+      padding: 30px 24px 60px;
+      color: #94a3b8;
+      font-size: 13px;
+      border-top: 1px solid #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fake company header -->
+  <header>
+    <a href="#" class="logo">
+      <span class="logo-dot"></span>
+      Acme Corp
+    </a>
+    <nav>
+      <a href="#">Product</a>
+      <a href="#">Pricing</a>
+      <a href="#">Docs</a>
+      <a href="#">Blog</a>
+    </nav>
+  </header>
+
+  <!-- Hero section -->
+  <section class="hero">
+    <div class="badge">Demo page — AI widget test</div>
+    <h1>The best platform<br>for your team</h1>
+    <p class="subtitle">
+      This is a standalone demo page that simulates an external website. The chat
+      bubble in the bottom-right corner is the AI Support Widget loaded via a
+      single script tag.
+    </p>
+    <div class="cta-group">
+      <a href="#" class="btn-primary">Get started free</a>
+      <a href="#" class="btn-secondary">See how it works</a>
+    </div>
+  </section>
+
+  <!-- Feature cards -->
+  <section class="features">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Lightning fast</h3>
+      <p>Deploy in seconds. No complex setup or infrastructure required.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <h3>Secure by default</h3>
+      <p>Enterprise-grade security with end-to-end encryption on every plan.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <h3>Powerful analytics</h3>
+      <p>Understand your users with real-time dashboards and custom reports.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <h3>AI-powered support</h3>
+      <p>24/7 automated support with Gemini AI. Click the chat bubble to try it.</p>
+    </div>
+  </section>
+
+  <!-- Instructions -->
+  <div class="demo-hint">
+    <strong>👋 Try the chat widget</strong>
+    Click the chat bubble in the bottom-right corner. It's powered by the AI
+    Support Widget you configured in the dashboard.
+    <br /><br />
+    <em>If the bubble doesn't appear, make sure you've created a widget in the
+    dashboard and replaced <code>YOUR_WIDGET_ID</code> in this page's script tag.</em>
+  </div>
+
+  <footer>
+    &copy; 2024 Acme Corp · This is a demo page for the AI Support Widget project.
+  </footer>
+
+  <!--
+    ═══════════════════════════════════════════════════════════════════
+    EMBED THE WIDGET
+    Replace YOUR_WIDGET_ID with a real widget ID from the dashboard at:
+      http://localhost:3000/dashboard
+
+    In production, replace http://localhost:3000 with your actual domain.
+    ═══════════════════════════════════════════════════════════════════
+  -->
+  <script src="http://localhost:3000/widget.js" data-widget-id="YOUR_WIDGET_ID"></script>
+
+</body>
+</html>
