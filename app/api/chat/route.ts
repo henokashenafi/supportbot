@@ -9,6 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { getWidget } from "@/lib/storage";
+import { incrementStat } from "@/lib/stats";
 import { ChatRequest } from "@/lib/types";
 
 function withCors(res: NextResponse): NextResponse {
@@ -127,12 +128,8 @@ export async function POST(req: NextRequest) {
       geminiData?.candidates?.[0]?.content?.parts?.[0]?.text ??
       "I couldn't generate a response. Please try again.";
 
-    // Increment chat counter
-    fetch("/api/stats", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ event: "chat_messages" }),
-    }).catch(() => {});
+    // Increment chat counter directly via Redis
+    await incrementStat("chat_messages");
 
     return withCors(NextResponse.json({ reply }));
 

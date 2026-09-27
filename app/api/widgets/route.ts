@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 import { listWidgets, saveWidget } from "@/lib/storage";
+import { incrementStat } from "@/lib/stats";
 import { WidgetConfig } from "@/lib/types";
 
 export async function GET() {
@@ -30,19 +31,11 @@ export async function POST(req: NextRequest) {
       updatedAt: now,
     };
     await saveWidget(config);
-
-    // Increment stats counter
-    fetch("/api/stats", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ event: "widgets_created" }),
-    }).catch(() => {});
-
+    await incrementStat("widgets_created"); // ← direct Redis call, no HTTP
     return NextResponse.json(config, { status: 201 });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("POST /api/widgets ERROR:", msg);
-    // Return the actual error in dev so we can debug it
     return NextResponse.json(
       { error: "Failed to create widget", detail: process.env.NODE_ENV === "development" ? msg : undefined },
       { status: 500 }
