@@ -127,6 +127,13 @@ export async function POST(req: NextRequest) {
       geminiData?.candidates?.[0]?.content?.parts?.[0]?.text ??
       "I couldn't generate a response. Please try again.";
 
+    // Increment chat counter
+    fetch("/api/stats", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ event: "chat_messages" }),
+    }).catch(() => {});
+
     return withCors(NextResponse.json({ reply }));
 
   } catch (err) {

@@ -146,6 +146,12 @@ export default function TryScreen() {
   const handleCopy = async () => {
     try { await navigator.clipboard.writeText(embedCode); } catch { /**/ }
     track("embed_code_copied");
+    // Also increment server-side counter
+    fetch("/api/stats", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ event: "embed_copied" }),
+    }).catch(() => {});
     setCopied(true); setTimeout(() => setCopied(false), 2000);
   };
 
