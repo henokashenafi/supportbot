@@ -32,7 +32,12 @@ export async function POST(req: NextRequest) {
     await saveWidget(config);
     return NextResponse.json(config, { status: 201 });
   } catch (err) {
-    console.error("POST /api/widgets:", err);
-    return NextResponse.json({ error: "Failed to create widget" }, { status: 500 });
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("POST /api/widgets ERROR:", msg);
+    // Return the actual error in dev so we can debug it
+    return NextResponse.json(
+      { error: "Failed to create widget", detail: process.env.NODE_ENV === "development" ? msg : undefined },
+      { status: 500 }
+    );
   }
 }

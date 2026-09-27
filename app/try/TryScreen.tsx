@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { track } from "@vercel/analytics";
 
 interface Msg { role: "user" | "bot"; text: string; ts: string; }
 type Phase = "setup" | "launching" | "live";
@@ -91,6 +92,9 @@ export default function TryScreen() {
       const data = await res.json();
       setWidgetId(data.id);
 
+      // Track widget creation event — visible in Vercel Analytics
+      track("widget_created", { botName, brandColor });
+
       for (const [msg, delay] of [
         ["Training on your knowledge base…", 800],
         ["Styling the widget…",              700],
@@ -141,6 +145,7 @@ export default function TryScreen() {
 
   const handleCopy = async () => {
     try { await navigator.clipboard.writeText(embedCode); } catch { /**/ }
+    track("embed_code_copied");
     setCopied(true); setTimeout(() => setCopied(false), 2000);
   };
 
